@@ -1,0 +1,6 @@
+hRst = 2 error 100: error 발생
+
+error 100: error 발생
+
+RegOpenKey(Software\AHNLAB\APC2\Policy Agent) : 0 error 100: error 발생
+

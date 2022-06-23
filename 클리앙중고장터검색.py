@@ -9,23 +9,24 @@ hdr = {'User-agent':'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) Appl
 for n in range(0,10):
         #클리앙의 중고장터 주소 
         data ='https://www.clien.net/service/board/sold?&od=T31&po=' + str(n)
+        print(data)
         #웹브라우져 헤더 추가 
         req = urllib.request.Request(data, \
                                     headers = hdr)
         data = urllib.request.urlopen(req).read()
+        #한글이 깨지는 경우는 디코딩
         page = data.decode('utf-8', 'ignore')
         soup = BeautifulSoup(page, 'html.parser')
-        list = soup.findAll('a', attrs={'class':'list_subject'})
-
+        list = soup.find_all('span', attrs={'data-role':'list-title-text'})
+        # <span class="subject_fixed" data-role="list-title-text">
+        # 	아이패드 프로 10.5인치 256기가 와이파이 (전투형, 화이트스팟)
+        # </span>
         for item in list:
                 try:
-                        #<a class='list_subject'><span>text</span><span>text</span>
-                        span = item.contents[1]
-                        span2 = span.nextSibling.nextSibling
-                        title = span2.text 
-                        if (re.search('아이폰', title)):
+                        title = item.text 
+                        #print(title.strip())
+                        if (re.search('맥북', title)):
                                 print(title.strip())
-                                print('https://www.clien.net'  + item['href'])
                 except:
                         pass
         

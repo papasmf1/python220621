@@ -8,7 +8,7 @@ class DemoWindow(QMainWindow):
         self.setupUI()
 
     def setupUI(self):
-        self.setGeometry(800, 200, 300, 300)
+        self.setGeometry(800, 200, 400, 400)
 
         self.checkBox1 = QCheckBox("아이폰", self)
         self.checkBox1.move(10, 20)
@@ -38,8 +38,8 @@ class DemoWindow(QMainWindow):
             msg += "윈도우폰 "
         self.statusBar.showMessage(msg)
 
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    demoWindow = DemoWindow()
-    demoWindow.show()
-    app.exec_()
+
+app = QApplication(sys.argv)
+demoWindow = DemoWindow()
+demoWindow.show()
+app.exec_()
